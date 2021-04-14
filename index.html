@@ -11,6 +11,22 @@
 <!-- //for-mobile-apps --> 
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/mystyle.css" rel="stylesheet" type="text/css" media="all" />
+      <style>
+        .myalignul
+        {
+                list-style-type:none;
+                margin:0;
+                padding:0;
+                
+        }
+        .myalignli
+        {
+        display:inline;
+        margin-left:120px;
+        margin-right:90px;/*la distance entre les categorie*/
+        }
+        </style>
 <!-- js -->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
@@ -60,13 +76,13 @@
 								</a>
 							</li>
 							<li>
-								<a class="link link--yaku scroll" href="#gallery">
-									<span>g</span><span>a</span><span>l</span><span>l</span><span>e</span><span>r</span><span>y</span>					
-								</a>
-							</li>
-							<li>
 								<a class="link link--yaku scroll" href="#mail">
 									<span>m</span><span>a</span><span>i</span><span>l</span>					
+								</a>
+							</li>
+                                                        <li>
+								<a class="link link--yaku scroll" href="#gallery">
+									<span>L</span><span>o</span><span>g</span><span>i</span><span>n</span>					
 								</a>
 							</li>
 						</ul>
@@ -107,6 +123,14 @@
 		</div>
 	</div>
 <!-- //banner -->
+<ul class="myalignul">
+        <li class="myalignli"><a href="index.html" class="active">Home</a></li>
+        <li class="myalignli"><a href="about.html">About</a></li>
+        <li class="myalignli"><a href="gallery.html">Gallery</a></li>
+        <li class="myalignli"><a href="typography.html">Typography</a></li>
+        <li class="myalignli"><a href="#news" class="scroll">News</a></li>
+        <li class="myalignli"><a href="contact.html">Contact</a></li>
+</ul>
 <!-- services -->
 	<div class="services" id="services">
 		<div class="container">
