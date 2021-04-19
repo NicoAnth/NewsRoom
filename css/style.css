@@ -45,7 +45,7 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
     margin-bottom: 0;
 }
 .navbar-brand {
-    height: 65px;
+    height: 165px;
     padding: 20px 0 0;
     font-size: 1.2em;
     line-height: 45px;
@@ -62,7 +62,30 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
 	-ms-transform: rotate(-150deg);
     display: inline-block;
 }
-.navbar-default .navbar-brand,.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+/* Register navbar */
+.navbar-register{
+	height: 165px;
+    padding: 20px 0 0;
+    font-size: 1.2em;
+    line-height: 45px;
+	position: relative;
+  	left: 400px;
+	transform: translateX(-50%);
+	left: 50%;
+	position: absolute;
+}
+.navbar-register span{
+	line-height: 0.5;
+    color:#ff0101;
+    text-transform: capitalize;
+    transform: rotate(-150deg);
+	-webkit-transform: rotate(-150deg);
+	-moz-transform: rotate(-150deg);
+	-o-transform: rotate(-150deg);
+	-ms-transform: rotate(-150deg);
+    display: inline-block;
+}
+.navbar-default .navbar-brand,.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar-register {
     color:#0b0d0c;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -896,6 +919,7 @@ a.w3_agile_vimeo:hover{
 }
 /*-- //to-top --*/
 /*-----start-responsive-design------*/
+
 @media (max-width:1366px){
 	.banner {
 		min-height: 665px;
