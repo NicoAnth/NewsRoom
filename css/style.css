@@ -28,13 +28,14 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
 }
 /*-- banner --*/
 .banner{
-	background:url(../images/news.jpg) no-repeat;
+	background:url(../images/3b5e7c0b23f541907e4cbeee03c53539.png) no-repeat;
 	background-position: center center;
 	background-size: contain; 
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	 -o-background-size:cover; 
 	-ms-background-size:cover;
+	background-attachment: fixed;
   width: auto;
   height: auto;
   max-width: 100%;
