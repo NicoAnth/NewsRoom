@@ -28,18 +28,24 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
 }
 /*-- banner --*/
 .banner{
-	background:url(../images/banner.jpg) no-repeat 0px 0px;
-	background-size:cover;
+	background:url(../images/000-2.png) no-repeat;
+	background-position: center center;
+	background-size: contain; 
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
-	-o-background-size:cover;
+	 -o-background-size:cover; 
 	-ms-background-size:cover;
-	min-height:700px;
+	background-attachment: fixed;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 /*-- nav --*/
 .navbar-default {
     background: none;
     border: none;
+	
 }
 .navbar {
     margin-bottom: 0;
@@ -49,7 +55,6 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
     padding: 20px 0 0;
     font-size: 1.2em;
     line-height: 45px;
-	background:url(../images/men.png) no-repeat 106px 8px;
 }
 .navbar-brand span {
     line-height: 0.5;
@@ -411,13 +416,13 @@ a.w3_agile_vimeo:hover{
 /*-- //banner-bottom --*/
 /*-- banner-text --*/
 .banner-text{
-	background:url(../images/2.jpg) no-repeat 0px 0px;
+	background:url(../images/) no-repeat 0px 0px;
     background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	-ms-background-size: cover;
-	min-height:300px;
+	min-height:150px;
 	padding: 5.5em 0 0;
 }
 .banner-text h3{
@@ -1529,6 +1534,7 @@ a.w3_agile_vimeo:hover{
 	}
 	.wthree_contact_left_grid {
 		padding: 0;
+		
 	}
 	.w3layouts_mail_grid_right textarea {
 		width: 100% !important;
