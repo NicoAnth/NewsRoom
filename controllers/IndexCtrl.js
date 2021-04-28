@@ -1,0 +1,25 @@
+exports.showHomePage=function(req,res){
+    res.render("./index",{
+        page:"index"
+    });
+}
+exports.showLoginPage=function(req,res){
+    res.render("./login",{
+        page:"login"
+    });
+}
+exports.showModifierPreferencesPage=function(req,res){
+    res.render("./ModifierPreferences",{
+        page:"ModifierPreferences"
+    });
+}
+exports.showParametrePage=function(req,res){
+    res.render("./Parametre",{
+        page:"Parametre"
+    });
+}
+exports.getRegisterPage=function(req,res){
+    res.render("./register",{
+        page:"register"
+    });
+}
