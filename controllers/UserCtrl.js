@@ -3,7 +3,7 @@ const mockData={ "mail":"leowjy123456@gmail.com","passeword":"123456","preferenc
 const mockData1={ "mail":"leowjy123456@gmail.com","passeword":"12345678","preferences":["General","Technology"]};
 
 exports.createOne=function(req,res){
-    User.createOne(req.body,function(){});
+    User.createOne(req.body);
     res.redirect("../login");
 }
 
@@ -12,6 +12,9 @@ exports.updateOne=function(req,res){
     res.render("/Parametre");
 }
 exports.deleteOne=function(req,res){
+    console.log(req)
+    console.log(req.body)
+    console.log(req.body.email)
     User.deleteOne(req.body.email,function(err,results){
         console.log(results)
     })

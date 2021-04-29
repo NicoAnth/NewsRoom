@@ -10,7 +10,7 @@ var articleSchema=new mongoose.Schema({
     "articlesSortByAsc": Boolean,
     "articlesArticleBodyLen": Number,
     "resultType": String,
-    "dataType": new Array(),//je sais pas si il marche
+    "dataType": [],//je sais pas si il marche
     "apiKey": String,
     "forceMaxDataTimeWindow": Number
 });

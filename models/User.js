@@ -17,11 +17,12 @@ userSchema.statics.createOne=function(user){
 }
 userSchema.statics.deleteOne=function(email){
     var conditions={"mail":email};
-    User.remove(conditions, function (error) {
+    User.remove(conditions, function (error, resultats) {
+        console.error(resultats);//{ n: 1, ok: 1, deletedCount: 1 }
         if (error) {
             console.error(error);
         } else {
-            console.error("User supprimé")
+            console.error("User supprimé")//User supprimé
         }
     });
 }
