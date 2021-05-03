@@ -105,7 +105,7 @@
 
                 //Get the img from the api and format it to fit the page
                 img.setAttribute('src',article.urlToImage);
-                img.setAttribute('class','agileinfo_services_grid_right');
+                img.setAttribute('class','agileinfo_services_grid_right newsImage');
                 img.setAttribute('style','position: absolute;left: 98%;');
                 img.setAttribute('width', 'auto');
                 img.setAttribute('height', 'auto');
@@ -144,7 +144,7 @@
             <h1><a class="navbar-register" href="./index"><span>N</span>ewsRoom</a></h1>
         </nav>
     </div>
-    <div class="collapse navbar-collapse navbar-right w3-agileits_home_nav" id="bs-example-navbar-collapse-1" style="margin-left: 2%;">
+    <div class=" collapse navbar-collapse navbar-right w3-agileits_home_nav" id="bs-example-navbar-collapse-1" style="margin-left: 2%;">
         <nav class="link-effect-3 " id="link-effect-3">
             <ul class="nav navbar-nav w3-agileits_home_nav"style="margin-top: 1.5em;">
                 <li>
@@ -166,9 +166,9 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
-    <div class= "col-sm-12" style="margin-left: 20%;">
+    <div class= "col-md-offset-4 col-md-4">
         <h1>General</h1>
-        <hr style="margin-right: 40%;">
+        <hr>
     </div>
     <div class="col-md-4 col-md-offset-4 col-mb-2 " id="newsList"></div>
     <script>getNews()</script>
