@@ -26,6 +26,11 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
 	-o-transition: .5s ease-in;
 	-ms-transition: .5s ease-in;
 }
+
+/* Categorie Links */
+.cat_link{
+	color:black !important;
+}
 /*-- banner --*/
 .banner{
 	background:url(../images/000-2.png) no-repeat;
@@ -67,7 +72,7 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
 	-ms-transform: rotate(-150deg);
     display: inline-block;
 }
-/* Register navbar */
+/* Categories navbar */
 .navbar-register{
     padding: 20px 0 0;
     font-size: 1.2em;
