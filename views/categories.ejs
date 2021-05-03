@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Register</title>
-    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    </style>
-    <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
-    <!-- //js -->
-    <!-- gallery -->
-    <link rel="stylesheet" href="/css/lightGallery.css" type="text/css" media="all" />
-    <!-- //gallery -->
-    <link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" property="" />
-    <!-- font-awesome icons -->
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link href="http://fonts.googleapis.com/css?family=Cabin+Condensed:400,500,600,700" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <title>General</title>
+    <!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps --> 
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<!-- gallery -->
+<link rel="stylesheet" href="/css/lightGallery.css" type="text/css" media="all" />
+<!-- //gallery -->
+<link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" property="" />
+<!-- font-awesome icons -->
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<!-- //font-awesome icons -->
+<link href="http://fonts.googleapis.com/css?family=Cabin+Condensed:400,500,600,700" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 </head>
 
 <script>
@@ -37,10 +45,42 @@
                 let img = document.createElement('img');
                 let date = document.createElement('em');
                 let author = document.createElement('p');
+                let divSocialNetworkBannerRight = document.createElement('div');
+                let ulsocialNetwork = document.createElement('ul');
+                let liFacebook = document.createElement('li');
+                let liTwitter = document.createElement('li');
+                let linkFacebook = document.createElement('a');
+                let linkTwitter = document.createElement('a');
+                let iFacebook = document.createElement('i');
+                let iTwitter = document.createElement('i');
+
+                //Set SocialNetwork banner
+                divSocialNetworkBannerRight.setAttribute('class', 'w3layouts_banner_info_right');
+                if(article.author == null){
+                    divSocialNetworkBannerRight.setAttribute('style', 'padding:0;');
+                }
+                linkFacebook.setAttribute('href', '#');
+                linkFacebook.setAttribute('class', 'w3_agile_facebook');
+                linkTwitter.setAttribute('href', '#');
+                linkTwitter.setAttribute('class', 'agile_twitter');
+
+                iFacebook.setAttribute('aria-hidden', 'true');
+                iFacebook.setAttribute('class', 'fa fa-facebook');
+                iTwitter.setAttribute('aria-hidden', 'true');
+                iTwitter.setAttribute('class', 'fa fa-twitter');
+
+                linkFacebook.appendChild(iFacebook);
+                liFacebook.appendChild(linkFacebook);
+                linkTwitter.appendChild(iTwitter);
+                liTwitter.appendChild(linkTwitter);
+                ulsocialNetwork.appendChild(liFacebook);
+                ulsocialNetwork.appendChild(liTwitter);
+                divSocialNetworkBannerRight.appendChild(ulsocialNetwork);
                 
                 //Parse the NewsAPI date
                 var dateapi = article.publishedAt.split('T');
 
+                //title and href formatting
                 div.setAttribute('class', 'agileinfo_services_grid');
                 a.setAttribute('href',article.url);
                 a.textContent = article.title;
@@ -50,6 +90,7 @@
                 description.setAttribute('style', 'color:black');
                 description.textContent=article.description;
 
+                //Get the img from the api and format it to fit the page
                 img.setAttribute('src',article.urlToImage);
                 img.setAttribute('class','agileinfo_services_grid_right');
                 img.setAttribute('style','position: absolute;left: 98%;');
@@ -70,6 +111,7 @@
                 div.appendChild(h2);
                 div.appendChild(date);
                 div.appendChild(description);
+                div.appendChild(divSocialNetworkBannerRight);
 
                 //If author is provided by NewsAPI, append to the div
                 if(article.author != null){
