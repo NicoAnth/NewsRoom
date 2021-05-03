@@ -23,3 +23,8 @@ exports.getRegisterPage=function(req,res){
         page:"register"
     });
 }
+exports.getCategoriesPage=function(req,res){
+    res.render("./categories",{
+        page:"categories"
+    });
+}

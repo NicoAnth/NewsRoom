@@ -38,6 +38,7 @@ app.get(prePath+"/login",IndexCtrl.showLoginPage);//login page
 app.get(prePath+"/ModifierPreferences",IndexCtrl.showModifierPreferencesPage);//ModifierPreferences page 
 app.get(prePath+"/Parametre",IndexCtrl.showParametrePage);//Parametre page 
 app.get(prePath+"/register",IndexCtrl.getRegisterPage);//register page 
+app.get(prePath+"/categories",IndexCtrl.getCategoriesPage);//categorie page 
 
 app.post(prePath+"/User/createOne",UserCtrl.createOne);//creer user
 app.post(prePath+"/User/updateOne",UserCtrl.updateOne);//update user
