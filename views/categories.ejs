@@ -27,6 +27,19 @@
 
 <script>
 
+    var checkImage = function(url){
+        var s = document.createElement("IMG");
+        s.src = url
+        var check = true;
+        s.onerror = function(){
+            check=false;
+        }
+        s.onload = function(){
+            check=true;
+        }
+        return check;
+    }
+
     function getNews() {
     
         fetch('http://newsapi.org/v2/top-headlines?country=us&category=general&apikey=e34c767bd0b34078a7a790f5c0dd9ba5').then((res)=>{
@@ -59,9 +72,9 @@
                 if(article.author == null){
                     divSocialNetworkBannerRight.setAttribute('style', 'padding:0;');
                 }
-                linkFacebook.setAttribute('href', '#');
+                linkFacebook.setAttribute('href', 'https://www.facebook.com/sharer/sharer.php?u='+article.url);
                 linkFacebook.setAttribute('class', 'w3_agile_facebook');
-                linkTwitter.setAttribute('href', '#');
+                linkTwitter.setAttribute('href', 'http://twitter.com/share?url='+article.url);
                 linkTwitter.setAttribute('class', 'agile_twitter');
 
                 iFacebook.setAttribute('aria-hidden', 'true');
@@ -105,7 +118,7 @@
                 author.textContent = 'By ' + article.author;
 
                 //If img is provided by NewsAPI, append it to the div
-                if(article.urlToImage != null){
+                if(article.urlToImage != null && checkImage(article.urlToImage)){
                     div.appendChild(img);
                 }
                 div.appendChild(h2);
