@@ -36,6 +36,7 @@
                 let hr = document.createElement('hr');
                 let img = document.createElement('img');
                 let date = document.createElement('em');
+                let author = document.createElement('p');
                 
                 //Parse the NewsAPI date
                 var dateapi = article.publishedAt.split('T');
@@ -45,24 +46,35 @@
                 a.textContent = article.title;
                 a.setAttribute('style','color:black');
                 h2.appendChild(a);
+
+                description.setAttribute('style', 'color:black');
                 description.textContent=article.description;
+
                 img.setAttribute('src',article.urlToImage);
                 img.setAttribute('class','agileinfo_services_grid_right');
-                img.setAttribute('style','position: absolute;left: 600px;');
-                img.setAttribute('width', '205px');
-                img.setAttribute('height', '100px');
+                img.setAttribute('style','position: absolute;left: 98%;');
+                img.setAttribute('width', '2.3%');
+                img.setAttribute('height', '2%');
                 
                 //Set the article's date
                 date.setAttribute('style', 'left: -139px !important; position: absolute;');
                 date.textContent = dateapi[0];
 
+                //Get the article's author
+                author.textContent = 'By ' + article.author;
+
                 //If img is provided by NewsAPI, append it to the div
                 if(article.urlToImage != null){
-                div.appendChild(img);
+                    div.appendChild(img);
                 }
                 div.appendChild(h2);
                 div.appendChild(date);
                 div.appendChild(description);
+
+                //If author is provided by NewsAPI, append to the div
+                if(article.author != null){
+                    div.appendChild(author);
+                }
                 div.appendChild(br);
                 div.appendChild(hr);
                 document.getElementById("newsList").appendChild(div);
@@ -82,6 +94,6 @@
         <hr style="margin-right: 40%;">
     </div>
     <div class="col-md-4 col-md-offset-4 col-mb-2 " id="newsList"></div>
-    <button onclick="getNews()">Try it </button>
+    <script>getNews()</script>
 
 </body>
