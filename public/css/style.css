@@ -31,6 +31,13 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
 .cat_link{
 	color:black !important;
 }
+
+/* Search banner */
+.search_banner{
+	position: absolute;
+	margin-left: 5%;
+	margin-top: 1.7%;
+}
 /*-- banner --*/
 .banner{
 	background:url(../images/000-2.png) no-repeat;
@@ -1079,6 +1086,9 @@ a.w3_agile_vimeo:hover{
 	}
 	.wthree_head span {
 		width: 18%;
+	}
+	.search_banner{
+		display: none;
 	}
 }
 @media (max-width: 800px){
