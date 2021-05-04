@@ -23,8 +23,33 @@ exports.getRegisterPage=function(req,res){
         page:"register"
     });
 }
-exports.getCategoriesPage=function(req,res){
-    res.render("./categories",{
-        page:"categories"
+exports.getGeneralPage=function(req,res){
+    res.render("./General",{
+        page:"General"
+    });
+}
+exports.getHealthPage=function(req,res){
+    res.render("./Health",{
+        page:"Health"
+    });
+}
+exports.getEntertainmentPage=function(req,res){
+    res.render("./Entertainment",{
+        page:"Entertainment"
+    });
+}
+exports.getSciencePage=function(req,res){
+    res.render("./Science",{
+        page:"Science"
+    });
+}
+exports.getSportPage=function(req,res){
+    res.render("./Sport",{
+        page:"Sport"
+    });
+}
+exports.getTechnologyPage=function(req,res){
+    res.render("./Technology",{
+        page:"Technology"
     });
 }
