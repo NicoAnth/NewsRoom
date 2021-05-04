@@ -27,17 +27,11 @@
 
 <script>
 
-    var checkImage = function(url){
-        var s = document.createElement("IMG");
-        s.src = url
-        var check = true;
-        s.onerror = function(){
-            check=false;
-        }
-        s.onload = function(){
-            check=true;
-        }
-        return check;
+    function imgError(image) {
+
+        image.onerror = "";
+        image.src = null;
+        return true;
     }
 
     function getNews() {
@@ -117,10 +111,12 @@
                 //Get the article's author
                 author.textContent = 'By ' + article.author;
 
-                //If img is provided by NewsAPI, append it to the div
-                if(article.urlToImage != null && checkImage(article.urlToImage)){
-                    div.appendChild(img);
+                //If img is provided by NewsAPI and available in our country, append it to the div
+                if(article.urlToImage == null || (/kubrick/.test(article.urlToImage))){
+                    img.src ="../images/000-2.png";
                 }
+
+                div.appendChild(img);
                 div.appendChild(date);
                 div.appendChild(h2);
                 div.appendChild(description);
