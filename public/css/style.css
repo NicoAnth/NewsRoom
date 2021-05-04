@@ -26,7 +26,9 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
 	-o-transition: .5s ease-in;
 	-ms-transition: .5s ease-in;
 }
-
+a:focus{
+	outline: none;
+}
 /* Categorie Links */
 .cat_link{
 	color:black !important;
