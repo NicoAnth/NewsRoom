@@ -31,8 +31,13 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
 .cat_link{
 	color:black !important;
 }
-
-
+/* Article date */
+.date{
+	left: -110px !important; 
+	position: absolute;
+	font-size: 90%;
+	margin-top: 4%;
+}
 /* Search banner */
 .search_banner{
 	position: absolute;

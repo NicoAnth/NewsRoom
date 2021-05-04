@@ -111,7 +111,7 @@
                 img.setAttribute('height', 'auto');
                 
                 //Set the article's date
-                date.setAttribute('style', 'left: -139px !important; position: absolute;');
+                date.setAttribute('class', 'date');
                 date.textContent = dateapi[0];
 
                 //Get the article's author
@@ -121,8 +121,8 @@
                 if(article.urlToImage != null && checkImage(article.urlToImage)){
                     div.appendChild(img);
                 }
-                div.appendChild(h2);
                 div.appendChild(date);
+                div.appendChild(h2);
                 div.appendChild(description);
                 div.appendChild(divSocialNetworkBannerRight);
 
