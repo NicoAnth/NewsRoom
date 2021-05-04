@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>General</title>
+    <!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps --> 
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<!-- gallery -->
+<link rel="stylesheet" href="/css/lightGallery.css" type="text/css" media="all" />
+<!-- //gallery -->
+<link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" property="" />
+<!-- font-awesome icons -->
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<!-- //font-awesome icons -->
+<link href="http://fonts.googleapis.com/css?family=Cabin+Condensed:400,500,600,700" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+</head>
+
+<script>
+
+    var checkImage = function(url){
+        var s = document.createElement("IMG");
+        s.src = url
+        var check = true;
+        s.onerror = function(){
+            check=false;
+        }
+        s.onload = function(){
+            check=true;
+        }
+        return check;
+    }
+
+    function getNews() {
+    
+        fetch('http://newsapi.org/v2/top-headlines?country=us&category=sport&apikey=e34c767bd0b34078a7a790f5c0dd9ba5').then((res)=>{
+            return res.json()
+        }).then((data)=>{
+            console.log(data)
+            data.articles.forEach(article =>{
+                
+                //Create article elements
+                let div = document.createElement('div');
+                let h2 = document.createElement('h2');
+                let a = document.createElement('a');
+                let description = document.createElement('p');
+                let br = document.createElement('br');
+                let hr = document.createElement('hr');
+                let img = document.createElement('img');
+                let date = document.createElement('em');
+                let author = document.createElement('p');
+                let divSocialNetworkBannerRight = document.createElement('div');
+                let ulsocialNetwork = document.createElement('ul');
+                let liFacebook = document.createElement('li');
+                let liTwitter = document.createElement('li');
+                let linkFacebook = document.createElement('a');
+                let linkTwitter = document.createElement('a');
+                let iFacebook = document.createElement('i');
+                let iTwitter = document.createElement('i');
+
+                //Set SocialNetwork banner
+                divSocialNetworkBannerRight.setAttribute('class', 'w3layouts_banner_info_right');
+                if(article.author == null){
+                    divSocialNetworkBannerRight.setAttribute('style', 'padding:0;');
+                }
+                linkFacebook.setAttribute('href', 'https://www.facebook.com/sharer/sharer.php?u='+article.url);
+                linkFacebook.setAttribute('class', 'w3_agile_facebook');
+                linkTwitter.setAttribute('href', 'http://twitter.com/share?url='+article.url);
+                linkTwitter.setAttribute('class', 'agile_twitter');
+
+                iFacebook.setAttribute('aria-hidden', 'true');
+                iFacebook.setAttribute('class', 'fa fa-facebook');
+                iTwitter.setAttribute('aria-hidden', 'true');
+                iTwitter.setAttribute('class', 'fa fa-twitter');
+
+                linkFacebook.appendChild(iFacebook);
+                liFacebook.appendChild(linkFacebook);
+                linkTwitter.appendChild(iTwitter);
+                liTwitter.appendChild(linkTwitter);
+                ulsocialNetwork.appendChild(liFacebook);
+                ulsocialNetwork.appendChild(liTwitter);
+                divSocialNetworkBannerRight.appendChild(ulsocialNetwork);
+                
+                //Parse the NewsAPI date
+                var dateapi = article.publishedAt.split('T');
+
+                //title and href formatting
+                div.setAttribute('class', 'agileinfo_services_grid');
+                a.setAttribute('href',article.url);
+                a.textContent = article.title;
+                a.setAttribute('style','color:black');
+                h2.appendChild(a);
+
+                description.setAttribute('style', 'color:black');
+                description.textContent=article.description;
+
+                //Get the img from the api and format it to fit the page
+                img.setAttribute('src',article.urlToImage);
+                img.setAttribute('class','agileinfo_services_grid_right newsImage');
+                img.setAttribute('style','position: absolute;left: 98%;');
+                img.setAttribute('width', 'auto');
+                img.setAttribute('height', 'auto');
+                
+                //Set the article's date
+                date.setAttribute('class', 'date');
+                date.textContent = dateapi[0];
+
+                //Get the article's author
+                author.textContent = 'By ' + article.author;
+
+                //If img is provided by NewsAPI, append it to the div
+                if(article.urlToImage != null && checkImage(article.urlToImage)){
+                    div.appendChild(img);
+                }
+                div.appendChild(date);
+                div.appendChild(h2);
+                div.appendChild(description);
+                div.appendChild(divSocialNetworkBannerRight);
+
+                //If author is provided by NewsAPI, append to the div
+                if(article.author != null){
+                    div.appendChild(author);
+                }
+                div.appendChild(br);
+                div.appendChild(hr);
+                document.getElementById("newsList").appendChild(div);
+            })
+        })
+    }
+</script>
+<body>
+    
+    <div class="col-md-4 col-md-offset-4 col-mb-2 "style="margin-bottom: 60px;">
+        <nav class="navbar navbar-default">
+            <h1><a class="navbar-register" href="./index"><span>N</span>ewsRoom</a></h1>
+        </nav>
+    </div>
+    <div class=" collapse navbar-collapse navbar-right w3-agileits_home_nav" id="bs-example-navbar-collapse-1" style="margin-left: 2%;">
+        <nav class="link-effect-3 " id="link-effect-3">
+            <ul class="nav navbar-nav w3-agileits_home_nav"style="margin-top: 1.5em;">
+                <li>
+                    <a class="link link--yaku scroll " href="./register" style="color: black;">
+                        <span>R</span><span>e</span><span>g</span><span>i</span><span>s</span><span>t</span><span>e</span><span>r</span>					
+                    </a>
+                </li>
+                                            <li>
+                    <a class="link link--yaku" href="./login" style="color: black;">
+                        <span>L</span><span>o</span><span>g</span><span>i</span><span>n</span>					
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="search_banner"> 
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Article...">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    <div class= "col-md-offset-4 col-md-4">
+        <h1>Sport</h1>
+        <hr>
+    </div>
+    <div class="col-md-4 col-md-offset-4 col-mb-2 " id="newsList"></div>
+    <script>getNews()</script>
+
+</body>
