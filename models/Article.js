@@ -34,6 +34,27 @@ articleSchema.statics.deleteMany=function(artList){
     //TODO
 }
 
-//creaion du model
+//Ajout fonction pour convertir le format date
+convertDate=function(d) {
+    var converted_date = dateFormat(d, "dd/mmmm/yyyy")
+    return converted_date
+}
+
+ checkImage = function(url){
+        var s = document.createElement("IMG");
+        s.src = url
+        var check = true;
+        s.onerror = function(){
+            check=false;
+        }
+        s.onload = function(){
+            check=true;
+        }
+        return check;
+}
+
+
+
+//creation du model
 var article= mongoose.model("article",articleSchema);
 module.exports=article;
