@@ -48,7 +48,9 @@ app.get(prePath+"/Entertainment",IndexCtrl.getEntertainmentPage);//Entertainment
 app.get(prePath+"/Category",IndexCtrl.getCategoryPage);
 
 //Test appel getNews 
-app.get(prePath+"Category/getNews",ArticleCtrl.getNews);
+console.log("je suis passé1!!")
+app.get(prePath+"/Article/getNews",ArticleCtrl.getNews);
+console.log("je suis passé2!!")
 
 app.post(prePath+"/User/createOne",UserCtrl.createOne);//creer user
 app.post(prePath+"/User/updateOne",UserCtrl.updateOne);//update user

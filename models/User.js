@@ -56,12 +56,6 @@ userSchema.statics.findAll=function(data){
         }
     });
 }
-userSchema.statics.login=function(mail,password){
-    //TODO
-}
-userSchema.statics.logout=function(user){
-    //TODO
-}
 //creaion du model
 var User= mongoose.model("User",userSchema);
 module.exports=User;

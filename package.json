@@ -25,7 +25,8 @@
     "express-session": "^1.17.1",
     "formidable": "^1.2.2",
     "mongoose": "^5.12.7",
-    "newsapi": "^2.4.1"
+    "newsapi": "^2.4.1",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
