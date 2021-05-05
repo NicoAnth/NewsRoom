@@ -53,3 +53,10 @@ exports.getTechnologyPage=function(req,res){
         page:"Technology"
     });
 }
+
+// Test daffichage d'une unique page
+exports.getCategoryPage=function(req,res){
+    res.render("./Category", {
+        page:"Category"
+    });
+}

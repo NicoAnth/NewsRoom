@@ -1,7 +1,7 @@
 //creation un app express
 var express= require("express");
 var mongoose=require("mongoose");
-var mongoConnectionString = "mongodb://localhost:27017/news";
+//var mongoConnectionString = "mongodb://localhost:27017/news";
 var session =require("express-session");
 var bodyParser = require('body-parser');
 
@@ -13,7 +13,7 @@ var ArticleCtrl=require("./controllers/ArticleCtrl.js");
 var app=express();
 
 //connection du BD
-mongoose.connect(mongoConnectionString, {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect(mongoConnectionString, {useNewUrlParser: true, useUnifiedTopology: true});
 
 //configuration de la session
 app.use(session({
@@ -44,6 +44,11 @@ app.get(prePath+"/Science",IndexCtrl.getSciencePage);//Science page
 app.get(prePath+"/Sport",IndexCtrl.getSportPage);//Sport page 
 app.get(prePath+"/Technology",IndexCtrl.getTechnologyPage);//Technology page 
 app.get(prePath+"/Entertainment",IndexCtrl.getEntertainmentPage);//Entertainment page 
+//Test une page pour toutes les categories
+app.get(prePath+"/Category",IndexCtrl.getCategoryPage);
+
+//Test appel getNews 
+app.get(prePath+"Category/getNews",ArticleCtrl.getNews);
 
 app.post(prePath+"/User/createOne",UserCtrl.createOne);//creer user
 app.post(prePath+"/User/updateOne",UserCtrl.updateOne);//update user
@@ -62,7 +67,7 @@ app.get(prePath+"/Article/deleteMany",ArticleCtrl.deleteMany);
 
 //public source
 app.use(express.static("public"));
-
+app.use(express.static("partials"));
 //setter 404 page
 app.use(function(req,res){
     res.send("Oups, la page n'existe pas");
