@@ -1,9 +1,14 @@
 {
+<<<<<<< HEAD
   "name": "news",
+=======
+  "name": "newsroom",
+>>>>>>> d65ffcc68b491a3b7f1ba5c26b0431b071b04f3d
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app"
   },
@@ -24,6 +29,18 @@
     "express-session": "^1.17.1",
     "formidable": "^1.2.2",
     "mongoose": "^5.12.6"
+=======
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+>>>>>>> d65ffcc68b491a3b7f1ba5c26b0431b071b04f3d
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

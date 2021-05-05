@@ -1,3 +1,4 @@
+<<<<<<< HEAD:public/css/mystyle.css
 .myalignul{
 	list-style-type:none;
 	margin:0;
@@ -7,3 +8,14 @@
            display:inline;
 }
 
+=======
+.myalignul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.myalignli{
+           display:inline;
+}
+
+>>>>>>> d65ffcc68b491a3b7f1ba5c26b0431b071b04f3d:css/mystyle.css
