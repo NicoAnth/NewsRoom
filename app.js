@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //creation un app express
 var express= require("express");
 var mongoose=require("mongoose");
@@ -66,7 +66,6 @@ app.use(function(req,res){
 //setter le port
 app.listen(3000);
 console.log("app is running in port 3000!");
-=======
 const express = require('express')
 
 const app = express()
@@ -90,4 +89,4 @@ app.use('/',mainRouter)
 
 //Listen on port 5000
 app.listen(port, () => console.log(`Listening on port ${port}`))
->>>>>>> d65ffcc68b491a3b7f1ba5c26b0431b071b04f3d
+
