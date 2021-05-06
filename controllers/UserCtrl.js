@@ -38,8 +38,31 @@ exports.findAll=function(req,res){
     })
 }
 exports.login=function(req,res){
-    //TODO
+//je dois utiliser jwt que je n'ai pas bien compris
+    const {mail, password}= req.body;
+    const user= await user.findOne({mail,password}).lean();
+
+    if(!user){
+        return res.json({'error': "Invalid mail/password"});
+    };
+
+    if (req.mail==user.mail && req.passeword==user.passeword){
+        return res.json({'OK': "login successful"});
+    }else{
+        return res.json({'error': "Invalid mail/password"});
+
+    };
+   // res.json({"login successful":data});
+
 }
 exports.logout=function(req,res){
-    //TODO
+    if (req.session) {
+        req.session.destroy(function(err) {
+          if(err) {
+            return next(err);
+          } else {
+            return res.redirect('/');
+          }
+        });
+      }
 }
