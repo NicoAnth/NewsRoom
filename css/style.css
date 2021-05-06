@@ -45,6 +45,13 @@ input[type="submit"],input[type="reset"],.w3layouts_banner_info_right ul li a,.w
     margin-bottom: 0;
 }
 
+.trait
+{
+background-color: blue;
+height: 1.5pt;
+width: 100%;
+}
+
 .vertical-menu {
   width: 200px; /* Set a width if you like */
 }
