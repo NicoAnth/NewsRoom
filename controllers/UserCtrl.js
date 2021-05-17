@@ -54,9 +54,8 @@ exports.login=function(req,res){
          if (!user){
                console.log("user n'existe pas");
            }
-           //if(user[0].password===passeword){
-               if('bb'=='bb'){
-                   console.log("connexion établi");
+           if(user[0].password===passeword){
+               console.log("connexion établi");
                    res.redirect("../General")
 
            }else{
