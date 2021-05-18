@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var UserCtrl=require("./controllers/UserCtrl.js");
 var IndexCtrl=require("./controllers/IndexCtrl.js");
 var ArticleCtrl=require("./controllers/ArticleCtrl.js");
+var NewsletterCtrl=require("./controllers/NewsletterCtrl.js");
 
 //creation de l'app
 var app=express();
@@ -17,10 +18,10 @@ mongoose.connect(mongoConnectionString, {useNewUrlParser: true, useUnifiedTopolo
 
 //configuration de la session
 app.use(session({
-    secret:'news',
-    cookie:{maxAge:60000},
-    resave:false,
-    saveUninitialized:true
+    secret:'news',//calcul du hash afin d'éviter modification du signedCookie
+    cookie:{maxAge:60000},//données
+    resave:false,//on sauvegarde pas la valeur de session si la valeur de session n'est pas changé 
+    saveUninitialized:true//forcer à sauvegarder session
 }));
 
 // parse application/x-www-form-urlencoded
@@ -59,6 +60,8 @@ app.get(prePath+"/Article/readOne",ArticleCtrl.readOne);
 app.get(prePath+"/Article/readMany",ArticleCtrl.readMany);
 app.get(prePath+"/Article/deleteOne",ArticleCtrl.deleteOne);
 app.get(prePath+"/Article/deleteMany",ArticleCtrl.deleteMany);
+
+app.get(prePath+"/newsletter/sendMails",NewsletterCtrl.sendMails);
 
 //public source
 app.use(express.static("public"));
