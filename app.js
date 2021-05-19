@@ -62,7 +62,7 @@ app.get(prePath+"/Article/readMany",ArticleCtrl.readMany);
 app.get(prePath+"/Article/deleteOne",ArticleCtrl.deleteOne);
 app.get(prePath+"/Article/deleteMany",ArticleCtrl.deleteMany);
 
-app.get(prePath+"/newsletter/sendMails",NewsletterCtrl.sendMails);
+app.post(prePath+"/newsletter/sendMails",NewsletterCtrl.sendMails);
 
 //public source
 app.use(express.static("public"));

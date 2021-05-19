@@ -47,12 +47,12 @@
         <div class="w3layouts_mail_grids">
             <!-- afin de centrer la div on a (12-7)/2 = 3 qui est la moitié en taille restante -->
             <div class="w3layouts_mail_grid_right ">
-                <form action="./newsletter/sendMails" method="get">
+                <form action="./newsletter/sendMails" method="post">
                     <div class="col-md-6 wthree_contact_left_grid ">
                         <input type="email" name="to" placeholder="to" required="">
                     </div>
                     <div class="col-md-6 wthree_contact_left_grid ">
-                        <input type="text" name="Subject" placeholder="Subject" required="">
+                        <input type="text" name="subject" placeholder="subject" required="">
                     </div>
                     <div class="clearfix" style="margin-left: 2%;">
                         <textarea name="text" placeholder="text" required=""></textarea>
