@@ -8,14 +8,14 @@ exports.showLoginPage=function(req,res){
         page:"login"
     });
 }
-exports.showModifierPreferencesPage=function(req,res){
-    res.render("./ModifierPreferences",{
-        page:"ModifierPreferences"
+exports.showChangePreferencesPage=function(req,res){
+    res.render("./ChangePreferences",{
+        page:"ChangePreferences"
     });
 }
-exports.showParametrePage=function(req,res){
-    res.render("./Parametre",{
-        page:"Parametre"
+exports.showParameterPage=function(req,res){
+    res.render("./Parameter",{
+        page:"Parameter"
     });
 }
 exports.getRegisterPage=function(req,res){
@@ -24,8 +24,10 @@ exports.getRegisterPage=function(req,res){
     });
 }
 exports.getGeneralPage=function(req,res){
+    var scrap = require('../public/js/Scrap.js');
     res.render("./General",{
-        page:"General"
+        page:"General", 
+        scrap:scrap
     });
 }
 exports.getHealthPage=function(req,res){
@@ -51,10 +53,5 @@ exports.getSportPage=function(req,res){
 exports.getTechnologyPage=function(req,res){
     res.render("./Technology",{
         page:"Technology"
-    });
-}
-exports.getEmailPage=function(req,res){
-    res.render("./Email",{
-        page:"Email"
     });
 }
