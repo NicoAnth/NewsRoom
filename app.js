@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended : false}));
 app.set("view engine","ejs");
 
 //setter routeur
-var prePath="/NewsRoom";
+var prePath="/Newsroom";
 app.get(prePath+"/index",IndexCtrl.showHomePage);//home page
 app.get(prePath+"/login",IndexCtrl.showLoginPage);//login page 
 app.get(prePath+"/ModifierPreferences",IndexCtrl.showModifierPreferencesPage);//ModifierPreferences page 
@@ -45,6 +45,7 @@ app.get(prePath+"/Science",IndexCtrl.getSciencePage);//Science page
 app.get(prePath+"/Sport",IndexCtrl.getSportPage);//Sport page 
 app.get(prePath+"/Technology",IndexCtrl.getTechnologyPage);//Technology page 
 app.get(prePath+"/Entertainment",IndexCtrl.getEntertainmentPage);//Entertainment page 
+app.get(prePath+"/Email",IndexCtrl.getEmailPage);//Entertainment page 
 
 app.post(prePath+"/User/createOne",UserCtrl.createOne);//creer user
 app.post(prePath+"/User/updateOne",UserCtrl.updateOne);//update user
