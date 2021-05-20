@@ -25,8 +25,37 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 </head>
 <script>
-   
-   
+   //creation du schema
+var articleSchema=new mongoose.Schema({
+    "action": String,
+    "keyword": String,
+    "articlesPage": Number,
+    "articlesCount": Number,
+    "articlesSortBy": String,
+    "articlesSortByAsc": Boolean,
+    "articlesArticleBodyLen": Number,
+    "resultType": String,
+    "dataType": [],//je sais pas si il marche
+    "apiKey": String,
+    "forceMaxDataTimeWindow": Number
+});
+
+articleSchema.statics.createOne=function(art){
+    var u =new article({
+        "action":art.action,
+        "keyword":art.keyword,
+        "articlesPage": art.articlesPage,
+        "articlesCount": art.articlesCount,
+        "articlesSortBy": art.articlesSortBy,
+        "articlesArticleBodyLen": art.articlesArticleBodyLen,
+        "resultType": art.resultType,
+        "dataType": art.dataType,
+        "apiKey": art.apiKey,
+        
+    })
+    u.save();
+}
+
 
 
 var mongoConnectionString = "mongodb+srv://user:user@cluster0.kzehu.mongodb.net/test?retryWrites=true&w=majority";
@@ -92,7 +121,7 @@ var mongoConnectionString = "mongodb+srv://user:user@cluster0.kzehu.mongodb.net/
                 document.body.appendChild(btn); 
 
                 btn.onclick = function(){
-                    
+                    createOne(art);
                  }
 
                 
