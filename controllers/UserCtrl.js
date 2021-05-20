@@ -1,7 +1,10 @@
 const { render } = require("ejs");
 const { findOne } = require("../models/User.js");
 const User = require("../models/User.js");
+<<<<<<< HEAD
 const session= require('express-session');
+=======
+>>>>>>> c203c0051b790d4dae5b5790e2d9a80b21e60b55
 const mockData = {
   mail: "leowjy123456@gmail.com",
   passeword: "123456",
@@ -17,6 +20,7 @@ exports.createOne = function(req, res) {
   User.createOne(req.body);
   res.redirect("../login");
 };
+<<<<<<< HEAD
 
 exports.updateOne = function(req, res) {
   User.updateOne(req.body, function() {});
@@ -25,6 +29,15 @@ exports.updateOne = function(req, res) {
 exports.deleteOne = function(req, res) {
   console.log(req);
 
+=======
+
+exports.updateOne = function(req, res) {
+  User.updateOne(req.body, function() {});
+  res.render("/Parametre");
+};
+exports.deleteOne = function(req, res) {
+  console.log(req);
+>>>>>>> c203c0051b790d4dae5b5790e2d9a80b21e60b55
   console.log(req.body);
   console.log(req.body.email);
   User.deleteOne(req.body.email, function(err, results) {
@@ -110,3 +123,4 @@ exports.logout=function(req,res){
   req.session.destroy();
     res.redirect("/");
 }
+
