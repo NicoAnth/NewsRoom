@@ -39,28 +39,18 @@ app.get(prePath+"/login",IndexCtrl.showLoginPage);//login page
 app.get(prePath+"/ModifierPreferences",IndexCtrl.showChangePreferencesPage);//ModifierPreferences page 
 app.get(prePath+"/Parametre",IndexCtrl.showParameterPage);//Parametre page 
 app.get(prePath+"/register",IndexCtrl.getRegisterPage);//register page 
-app.get(prePath+"/test", (req, res) => {
-       const NewsAPI = require("newsapi");
+
+      //Clés NewsAPI
       //06e5537922b040989a7056bdf11539d9 mienne
       //e34c767bd0b34078a7a790f5c0dd9ba5 nicolas
-       const newsapi = new NewsAPI("06e5537922b040989a7056bdf11539d9");
-       let lg = "en";
-      let numberResults = 10;
-  newsapi.v2.topHeadlines({
-      language: lg,
-      pageSize: numberResults,
-      category: "health"
-    })
-    .then(response => {
-       res.render('Test.ejs', { articles : response.data.articles });
-    });     
-})
+
 app.get(prePath+"/General",IndexCtrl.getGeneralPage);//general page 
 app.get(prePath+"/Health",IndexCtrl.getHealthPage);//Health page 
 app.get(prePath+"/Science",IndexCtrl.getSciencePage);//Science page 
 app.get(prePath+"/Sport",IndexCtrl.getSportPage);//Sport page 
 app.get(prePath+"/Technology",IndexCtrl.getTechnologyPage);//Technology page 
 app.get(prePath+"/Entertainment",IndexCtrl.getEntertainmentPage);//Entertainment page 
+app.get(prePath+"/Email",IndexCtrl.getEmailPage);
 
 app.post(prePath+"/User/createOne",UserCtrl.createOne);//creer user
 app.post(prePath+"/User/updateOne",UserCtrl.updateOne);//update user
@@ -76,7 +66,7 @@ app.get(prePath+"/Article/readOne",ArticleCtrl.readOne);
 app.get(prePath+"/Article/readMany",ArticleCtrl.readMany);
 app.get(prePath+"/Article/deleteOne",ArticleCtrl.deleteOne);
 app.get(prePath+"/Article/deleteMany",ArticleCtrl.deleteMany);
-app.get(prePath+"/newsletter/sendMails",NewsletterCtrl.sendMails);
+app.post(prePath+"/newsletter/sendMails",NewsletterCtrl.sendMails);
 
 //public source
 app.use(express.static("public"));

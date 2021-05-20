@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Health</title>
@@ -20,11 +21,12 @@
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="/css/font-awesome.min.css" />
 <!-- //font-awesome icons -->
-<link href="http://fonts.googleapis.com/css?family=Cabin+Condensed:400,500,600,700" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Cabin+Condensed:400,500,600,700" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 </head>
 
 <script>
+
     var checkImage = function(url){
         var s = document.createElement("IMG");
         s.src = url
@@ -37,9 +39,10 @@
         }
         return check;
     }
+
     function getNews() {
     
-        fetch('http://newsapi.org/v2/top-headlines?country=us&category=health&apikey=e34c767bd0b34078a7a790f5c0dd9ba5').then((res)=>{
+        fetch('https://newsapi.org/v2/top-headlines?language=en&category=health&apikey=e34c767bd0b34078a7a790f5c0dd9ba5').then((res)=>{
             return res.json()
         }).then((data)=>{
             console.log(data)
@@ -63,6 +66,7 @@
                 let linkTwitter = document.createElement('a');
                 let iFacebook = document.createElement('i');
                 let iTwitter = document.createElement('i');
+
                 //Set SocialNetwork banner
                 divSocialNetworkBannerRight.setAttribute('class', 'w3layouts_banner_info_right');
                 if(article.author == null){
@@ -72,10 +76,12 @@
                 linkFacebook.setAttribute('class', 'w3_agile_facebook');
                 linkTwitter.setAttribute('href', 'http://twitter.com/share?url='+article.url);
                 linkTwitter.setAttribute('class', 'agile_twitter');
+
                 iFacebook.setAttribute('aria-hidden', 'true');
                 iFacebook.setAttribute('class', 'fa fa-facebook');
                 iTwitter.setAttribute('aria-hidden', 'true');
                 iTwitter.setAttribute('class', 'fa fa-twitter');
+
                 linkFacebook.appendChild(iFacebook);
                 liFacebook.appendChild(linkFacebook);
                 linkTwitter.appendChild(iTwitter);
@@ -86,14 +92,17 @@
                 
                 //Parse the NewsAPI date
                 var dateapi = article.publishedAt.split('T');
+
                 //title and href formatting
                 div.setAttribute('class', 'agileinfo_services_grid');
                 a.setAttribute('href',article.url);
                 a.textContent = article.title;
                 a.setAttribute('style','color:black');
                 h2.appendChild(a);
+
                 description.setAttribute('style', 'color:black');
                 description.textContent=article.description;
+
                 //Get the img from the api and format it to fit the page
                 img.setAttribute('src',article.urlToImage);
                 img.setAttribute('class','agileinfo_services_grid_right newsImage');
@@ -104,8 +113,10 @@
                 //Set the article's date
                 date.setAttribute('class', 'date');
                 date.textContent = dateapi[0];
+
                 //Get the article's author
                 author.textContent = 'By ' + article.author;
+
                 //If img is provided by NewsAPI, append it to the div
                 if(article.urlToImage == null || (/kubrick/.test(article.urlToImage))){
                     img.src ="../images/000-2.png";
@@ -115,6 +126,7 @@
                 div.appendChild(h2);
                 div.appendChild(description);
                 div.appendChild(divSocialNetworkBannerRight);
+
                 //If author is provided by NewsAPI, append to the div
                 if(article.author != null){
                     div.appendChild(author);

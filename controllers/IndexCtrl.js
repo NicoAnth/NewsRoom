@@ -55,3 +55,8 @@ exports.getTechnologyPage=function(req,res){
         page:"Technology"
     });
 }
+exports.getEmailPage=function(req,res){
+    res.render("./Email",{
+        page:"Email"
+    });
+}
