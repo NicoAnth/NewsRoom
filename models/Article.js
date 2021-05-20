@@ -16,10 +16,22 @@ var articleSchema=new mongoose.Schema({
 });
 
 articleSchema.statics.createOne=function(art){
-    //TODO
+    var u =new article({
+        "action":art.action,
+        "keyword":art.keyword,
+        "articlesPage": art.articlesPage,
+        "articlesCount": art.articlesCount,
+        "articlesSortBy": art.articlesSortBy,
+        "articlesArticleBodyLen": art.articlesArticleBodyLen,
+        "resultType": art.resultType,
+        "dataType": art.dataType,
+        "apiKey": art.apiKey,
+        
+    })
+    u.save();
 }
 articleSchema.statics.createMany=function(artList){
-    //TODO
+    
 }
 articleSchema.statics.readOne=function(art){
     //TODO

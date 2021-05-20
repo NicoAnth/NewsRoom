@@ -1,7 +1,7 @@
 //creation un app express
 var express= require("express");
 var mongoose=require("mongoose");
-var mongoConnectionString = "mongodb://localhost:27017/news";
+var mongoConnectionString = "mongodb+srv://user:user@cluster0.kzehu.mongodb.net/test?retryWrites=true&w=majority";
 var session =require("express-session");
 var bodyParser = require('body-parser');
 
@@ -17,6 +17,8 @@ mongoose.connect(mongoConnectionString, {useNewUrlParser: true, useUnifiedTopolo
 
 //configuration de la session
 app.use(session({
+    
+    saveUninitialized:false,
     secret:'news',
     cookie:{maxAge:60000},
     resave:false,
