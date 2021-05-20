@@ -1,4 +1,5 @@
 var mongoose=require("mongoose");
+const { findOne } = require("./Article");
 
 //creation du schema
 var userSchema=new mongoose.Schema({
@@ -38,7 +39,7 @@ userSchema.statics.updateOne=function(user){
     });
 }
 userSchema.statics.findOne=function(user){
-    var conditions = {"_id": user._id};
+    var conditions = {"mail": user.mail};
     User.find(conditions, function (error, doc) {
         if (error) {
             console.error(error)
@@ -56,8 +57,18 @@ userSchema.statics.findAll=function(data){
         }
     });
 }
-userSchema.statics.login=function(mail,password){
-    //TODO
+userSchema.statics.login=function(mail,passeword){
+    User.findOne({mail:mail , passeword:passeword }, function(err, user){  
+    
+ if(user.password==passeword){
+        console.log("user n'existe pas");
+    }
+    else{
+        console.log("connexion établie");
+    }
+       
+    });
+   
 }
 userSchema.statics.logout=function(user){
     //TODO

@@ -1,7 +1,12 @@
 //creation un app express
 var express= require("express");
+/*<<<<<<< HEAD
+var mongoose=require("mongoose");
+var mongoConnectionString = "mongodb+srv://user:user@cluster0.kzehu.mongodb.net/test?retryWrites=true&w=majority";
+=======*/
 var mongoose=require("mongoose");
 var mongoConnectionString = "mongodb://localhost:27017/news";
+//>>>>>>> c203c0051b790d4dae5b5790e2d9a80b21e60b55
 var session =require("express-session");
 var bodyParser = require('body-parser');
 
@@ -18,16 +23,25 @@ mongoose.connect(mongoConnectionString, {useNewUrlParser: true, useUnifiedTopolo
 
 //configuration de la session
 app.use(session({
-    secret:'news',//calcul du hash afin d'éviter modification du signedCookie
+/*<<<<<<< HEAD
+    
+    saveUninitialized:false,
+    secret:'news',
+    cookie:{maxAge:60000},
+    resave:false,
+    saveUninitialized:true
+=======*/
+  secret:'news',//calcul du hash afin d'éviter modification du signedCookie
     cookie:{maxAge:60000},//données
     resave:false,//on sauvegarde pas la valeur de session si la valeur de session n'est pas changé 
     saveUninitialized:true//forcer à sauvegarder session
+//>>>>>>> c203c0051b790d4dae5b5790e2d9a80b21e60b55
 }));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended : false}));
 // parse application/json
-//app.use(bodyParser.json())
+app.use(bodyParser.json())
 
 //configuration du template
 app.set("view engine","ejs");
@@ -36,9 +50,25 @@ app.set("view engine","ejs");
 var prePath="/Newsroom";
 app.get(prePath+"/index",IndexCtrl.showHomePage);//home page
 app.get(prePath+"/login",IndexCtrl.showLoginPage);//login page 
-app.get(prePath+"/ModifierPreferences",IndexCtrl.showModifierPreferencesPage);//ModifierPreferences page 
-app.get(prePath+"/Parametre",IndexCtrl.showParametrePage);//Parametre page 
+app.get(prePath+"/ModifierPreferences",IndexCtrl.showChangePreferencesPage);//ModifierPreferences page 
+app.get(prePath+"/Parametre",IndexCtrl.showParameterPage);//Parametre page 
 app.get(prePath+"/register",IndexCtrl.getRegisterPage);//register page 
+app.get(prePath+"/test", (req, res) => {
+       const NewsAPI = require("newsapi");
+      //06e5537922b040989a7056bdf11539d9 mienne
+      //e34c767bd0b34078a7a790f5c0dd9ba5 nicolas
+       const newsapi = new NewsAPI("06e5537922b040989a7056bdf11539d9");
+       let lg = "en";
+      let numberResults = 10;
+  newsapi.v2.topHeadlines({
+      language: lg,
+      pageSize: numberResults,
+      category: "health"
+    })
+    .then(response => {
+       res.render('Test.ejs', { articles : response.data.articles });
+    });     
+})
 app.get(prePath+"/General",IndexCtrl.getGeneralPage);//general page 
 app.get(prePath+"/Health",IndexCtrl.getHealthPage);//Health page 
 app.get(prePath+"/Science",IndexCtrl.getSciencePage);//Science page 
@@ -61,8 +91,7 @@ app.get(prePath+"/Article/readOne",ArticleCtrl.readOne);
 app.get(prePath+"/Article/readMany",ArticleCtrl.readMany);
 app.get(prePath+"/Article/deleteOne",ArticleCtrl.deleteOne);
 app.get(prePath+"/Article/deleteMany",ArticleCtrl.deleteMany);
-
-app.post(prePath+"/newsletter/sendMails",NewsletterCtrl.sendMails);
+app.get(prePath+"/newsletter/sendMails",NewsletterCtrl.sendMails);
 
 //public source
 app.use(express.static("public"));

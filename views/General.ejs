@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 <head>
     <title>General</title>
     <!-- for-mobile-apps -->
@@ -24,9 +25,41 @@
 <link href="http://fonts.googleapis.com/css?family=Cabin+Condensed:400,500,600,700" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 </head>
-
 <script>
+   //creation du schema
+var articleSchema=new mongoose.Schema({
+    "action": String,
+    "keyword": String,
+    "articlesPage": Number,
+    "articlesCount": Number,
+    "articlesSortBy": String,
+    "articlesSortByAsc": Boolean,
+    "articlesArticleBodyLen": Number,
+    "resultType": String,
+    "dataType": [],//je sais pas si il marche
+    "apiKey": String,
+    "forceMaxDataTimeWindow": Number
+});
 
+articleSchema.statics.createOne=function(art){
+    var u =new article({
+        "action":art.action,
+        "keyword":art.keyword,
+        "articlesPage": art.articlesPage,
+        "articlesCount": art.articlesCount,
+        "articlesSortBy": art.articlesSortBy,
+        "articlesArticleBodyLen": art.articlesArticleBodyLen,
+        "resultType": art.resultType,
+        "dataType": art.dataType,
+        "apiKey": art.apiKey,
+        
+    })
+    u.save();
+}
+
+
+
+var mongoConnectionString = "mongodb+srv://user:user@cluster0.kzehu.mongodb.net/test?retryWrites=true&w=majority";
     function imgError(image) {
 
         image.onerror = "";
@@ -35,14 +68,16 @@
     }
 
     function getNews() {
-    
         fetch('http://newsapi.org/v2/top-headlines?country=us&category=general&apikey=e34c767bd0b34078a7a790f5c0dd9ba5').then((res)=>{
             return res.json()
         }).then((data)=>{
-            console.log(data)
+            console.log(data);
+           
             data.articles.forEach(article =>{
                 
+
                 //Create article elements
+                let but= document.createElement('button');
                 let div = document.createElement('div');
                 let h2 = document.createElement('h2');
                 let a = document.createElement('a');
@@ -60,7 +95,7 @@
                 let linkTwitter = document.createElement('a');
                 let iFacebook = document.createElement('i');
                 let iTwitter = document.createElement('i');
-
+                let linkbutton=document.createElement('div');
                 //Set SocialNetwork banner
                 divSocialNetworkBannerRight.setAttribute('class', 'w3layouts_banner_info_right');
                 if(article.author == null){
@@ -75,6 +110,24 @@
                 iFacebook.setAttribute('class', 'fa fa-facebook');
                 iTwitter.setAttribute('aria-hidden', 'true');
                 iTwitter.setAttribute('class', 'fa fa-twitter');
+                but.setAttribute('class','Sauvegarder');
+                but.setAttribute('style','color:black');
+
+                linkbutton.appendChild(but);
+
+
+                var btn = document.createElement("BUTTON");        // Créer un élément <button>
+                var t = document.createTextNode("Save");       // Créer un noeud textuel
+                btn.appendChild(t);                                // Ajouter le texte au bouton
+                document.body.appendChild(btn); 
+
+                btn.onclick = function(){
+                    createOne(art);
+                 }
+
+                
+
+               
 
                 linkFacebook.appendChild(iFacebook);
                 liFacebook.appendChild(linkFacebook);
@@ -121,7 +174,7 @@
                 div.appendChild(h2);
                 div.appendChild(description);
                 div.appendChild(divSocialNetworkBannerRight);
-
+                div.appendChild(btn);
                 //If author is provided by NewsAPI, append to the div
                 if(article.author != null){
                     div.appendChild(author);
@@ -129,12 +182,18 @@
                 div.appendChild(br);
                 div.appendChild(hr);
                 document.getElementById("newsList").appendChild(div);
+                btn.addEventListener('click', function (event) {
+                  //  console.log(data.article);
+                  
+                alert('Element Saved');
+});
             })
+            
+
         })
     }
 </script>
 <body>
-    
     <div class="col-md-4 col-md-offset-4 col-mb-2 "style="margin-bottom: 60px;">
         <nav class="navbar navbar-default">
             <h1><a class="navbar-register" href="./index"><span>N</span>ewsRoom</a></h1>
@@ -168,5 +227,16 @@
     </div>
     <div class="col-md-4 col-md-offset-4 col-mb-2 " id="newsList"></div>
     <script>getNews()</script>
-
+=======
+  <script>
+   <%= scrap.getArticle(); %>
+  
+  </script>
+ 
+  
+  
+<%- include('HeaderCategory.ejs'); %>
+    
+>>>>>>> c203c0051b790d4dae5b5790e2d9a80b21e60b55
+    
 </body>
