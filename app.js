@@ -1,47 +1,56 @@
-//creation un app express
-var express= require("express");
-/*<<<<<<< HEAD
-var mongoose=require("mongoose");
-var mongoConnectionString = "mongodb+srv://user:user@cluster0.kzehu.mongodb.net/test?retryWrites=true&w=majority";
-=======*/
-var mongoose=require("mongoose");
-var mongoConnectionString = "mongodb://localhost:27017/news";
-//>>>>>>> c203c0051b790d4dae5b5790e2d9a80b21e60b55
-var session =require("express-session");
-var bodyParser = require('body-parser');
+//creation dune app express
+const express = require("express");
+const session = require("express-session");
+const mongoose = require("mongoose");
+const mongoStore = require("connect-mongo");
+var passport = require("passport");
+var crypto = require("crypto");
 
-var UserCtrl=require("./controllers/UserCtrl.js");
-var IndexCtrl=require("./controllers/IndexCtrl.js");
-var ArticleCtrl=require("./controllers/ArticleCtrl.js");
-var NewsletterCtrl=require("./controllers/NewsletterCtrl.js");
+
+const UserCtrl=require("./controllers/UserCtrl.js");
+const IndexCtrl=require("./controllers/IndexCtrl.js");
+const ArticleCtrl=require("./controllers/ArticleCtrl.js");
+const MailCtrl=require("./controllers/MailCtrl.js");
 
 //creation de l'app
 var app=express();
 
-//connection du BD
-mongoose.connect(mongoConnectionString, {useNewUrlParser: true, useUnifiedTopology: true});
+
+// parse application/json
+app.use(express.json());
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({extended : false}));
+
+
+//Je commence le tuto pour login/logout: 
+// https://youtu.be/F-sFp_AvHc8
+//https://github.com/zachgoll/express-session-authentication-starter
+const uriBdd = "mongodb+srv://newsAdmin:cmsI%230H%4072%21Y@awsnr.jmguc.mongodb.net/test";
+
+
+//on utilise plus new mongoStore mais create, on a dautres changements , cf npm connect-mongo
+const sessionStore = mongoStore.create({
+	mongoUrl: uriBdd,
+	mongoOptions: {
+	useNewUrlParser: true,
+    useUnifiedTopology: true
+	},
+    collectionName: 'sessions' // cree une collection sessions et stocke session ci-dessous
+});
+
+
 
 //configuration de la session
 app.use(session({
-/*<<<<<<< HEAD
-    
-    saveUninitialized:false,
-    secret:'news',
-    cookie:{maxAge:60000},
-    resave:false,
-    saveUninitialized:true
-=======*/
   secret:'news',//calcul du hash afin d'éviter modification du signedCookie
-    cookie:{maxAge:60000},//données
+    cookie:{maxAge:1000 * 60 * 60 * 24},// temps donné avant expiration du cookie
     resave:false,//on sauvegarde pas la valeur de session si la valeur de session n'est pas changé 
-    saveUninitialized:true//forcer à sauvegarder session
-//>>>>>>> c203c0051b790d4dae5b5790e2d9a80b21e60b55
+    saveUninitialized:true,//forcer à sauvegarder session
+    store: sessionStore // stocker dans la bd la session
 }));
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended : false}));
-// parse application/json
-app.use(bodyParser.json())
+
+
 
 //configuration du template
 app.set("view engine","ejs");
@@ -53,29 +62,18 @@ app.get(prePath+"/login",IndexCtrl.showLoginPage);//login page
 app.get(prePath+"/ModifierPreferences",IndexCtrl.showChangePreferencesPage);//ModifierPreferences page 
 app.get(prePath+"/Parametre",IndexCtrl.showParameterPage);//Parametre page 
 app.get(prePath+"/register",IndexCtrl.getRegisterPage);//register page 
-app.get(prePath+"/test", (req, res) => {
-       const NewsAPI = require("newsapi");
+
+      //Clés NewsAPI
       //06e5537922b040989a7056bdf11539d9 mienne
       //e34c767bd0b34078a7a790f5c0dd9ba5 nicolas
-       const newsapi = new NewsAPI("06e5537922b040989a7056bdf11539d9");
-       let lg = "en";
-      let numberResults = 10;
-  newsapi.v2.topHeadlines({
-      language: lg,
-      pageSize: numberResults,
-      category: "health"
-    })
-    .then(response => {
-       res.render('Test.ejs', { articles : response.data.articles });
-    });     
-})
+
 app.get(prePath+"/General",IndexCtrl.getGeneralPage);//general page 
 app.get(prePath+"/Health",IndexCtrl.getHealthPage);//Health page 
 app.get(prePath+"/Science",IndexCtrl.getSciencePage);//Science page 
 app.get(prePath+"/Sport",IndexCtrl.getSportPage);//Sport page 
 app.get(prePath+"/Technology",IndexCtrl.getTechnologyPage);//Technology page 
 app.get(prePath+"/Entertainment",IndexCtrl.getEntertainmentPage);//Entertainment page 
-app.get(prePath+"/Email",IndexCtrl.getEmailPage);//Entertainment page 
+app.get(prePath+"/Email",IndexCtrl.getEmailPage);
 
 app.post(prePath+"/User/createOne",UserCtrl.createOne);//creer user
 app.post(prePath+"/User/updateOne",UserCtrl.updateOne);//update user
@@ -91,7 +89,7 @@ app.get(prePath+"/Article/readOne",ArticleCtrl.readOne);
 app.get(prePath+"/Article/readMany",ArticleCtrl.readMany);
 app.get(prePath+"/Article/deleteOne",ArticleCtrl.deleteOne);
 app.get(prePath+"/Article/deleteMany",ArticleCtrl.deleteMany);
-app.get(prePath+"/newsletter/sendMails",NewsletterCtrl.sendMails);
+app.post(prePath+"/newsletter/sendMails",MailCtrl.sendMails);
 
 //public source
 app.use(express.static("public"));

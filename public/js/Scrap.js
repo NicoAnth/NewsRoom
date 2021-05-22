@@ -288,13 +288,13 @@ function getArticle() {
         console.log(articles[a]);
       }
       
-      let titleDiv = window.document.body.createElement("div");
-      titleDiv.setAttribute("class", "col-md-offset-4 col-md-4");
-      let HText = document.body.createElement("h1");
-      HText.innerHTML = "General";
-      let HorizontalBar = document.body.createElement("hr");
-      titleDiv.appendChild(HText);
-      titleDiv.appendChild(HorizontalBar);
+      //let titleDiv = window.document.body.createElement("div");
+      //titleDiv.setAttribute("class", "col-md-offset-4 col-md-4");
+      //let HText = document.body.createElement("h1");
+      //HText.innerHTML = "General";
+      //let HorizontalBar = document.body.createElement("hr");
+      //titleDiv.appendChild(HText);
+      //titleDiv.appendChild(HorizontalBar);
 
       let mainDiv = document.body.createElement("div");
       mainDiv.setAttribute("id", "newsList");
