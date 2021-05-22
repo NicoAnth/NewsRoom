@@ -1,4 +1,3 @@
-const { render } = require("ejs");
 const { findOne } = require("../models/User.js");
 const User = require("../models/User.js");
 const mockData = {
@@ -49,33 +48,11 @@ exports.findAll = function(req, res) {
 };
 
 exports.login=function(req,res){
-    var mail= req.body.email;
-    var passeword=req.body.password;    
-    console.log (mail,passeword);   
 
-    User.find({mail:mail}, function(err, user){  
-        console.log(user[0].password);
-        if(err){
-            res.end("server error");
-        }
-        console.log("user = " + user);
-         if (!user){
-               console.log("user n'existe pas");
-           }
-           if(user[0].password===passeword){
-               console.log("connexion établi");
-                   res.redirect("../General")
-
-           }else{
-               console.log("connexion échoué");
-           }
-            
-     });
       
    }
 
 exports.logout=function(req,res){
-    req.logout();
-    res.redirect("/");
+  
 }
 

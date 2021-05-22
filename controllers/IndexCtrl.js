@@ -24,35 +24,34 @@ exports.getRegisterPage=function(req,res){
     });
 }
 exports.getGeneralPage=function(req,res){
-    var scrap = require('../public/js/Scrap.js');
     res.render("./General",{
-        page:"General", 
-        scrap:scrap
+        pageCategory:"General", 
     });
 }
 exports.getHealthPage=function(req,res){
     res.render("./Health",{
-        page:"Health"
+        pageCategory:"Health"
     });
 }
 exports.getEntertainmentPage=function(req,res){
     res.render("./Entertainment",{
-        page:"Entertainment"
+        pageCategory:"Entertainment"
     });
 }
 exports.getSciencePage=function(req,res){
     res.render("./Science",{
-        page:"Science"
+        pageCategory:"Science"
     });
 }
 exports.getSportPage=function(req,res){
     res.render("./Sport",{
-        page:"Sport"
+        pageCategory:"Sport",
+        nameCategoryAPI: "sport" //ici on a pas le meme nom pour l uri de fetch de lapi que le nom de la page
     });
 }
 exports.getTechnologyPage=function(req,res){
     res.render("./Technology",{
-        page:"Technology"
+        pageCategory:"Technology"
     });
 }
 exports.getEmailPage=function(req,res){
