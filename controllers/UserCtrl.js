@@ -1,19 +1,12 @@
-const { findOne } = require("../models/User.js");
-const User = require("../models/User.js");
-const mockData = {
-  mail: "leowjy123456@gmail.com",
-  passeword: "123456",
-  preferences: ["General", "Technology"]
-};
-const mockData1 = {
-  mail: "leowjy123456@gmail.com",
-  passeword: "12345678",
-  preferences: ["General", "Technology"]
-};
+const passport = require("passport");
+const LocalStrategy = require('passport-local').Strategy;
+const User = require("../models/User");
+const validPassword = require('../models/PasswordUtils').validPassword;
+
 
 exports.createOne = function(req, res) {
-  User.createOne(req.body);
-  res.redirect("../login");
+  User.createOne(req);
+  res.redirect("../loginPage");
 };
 
 exports.updateOne = function(req, res) {
@@ -47,12 +40,80 @@ exports.findAll = function(req, res) {
   });
 };
 
-exports.login=function(req,res){
 
-      
-   }
+exports.authentification = function(req, res) {
+  var mail= req.body.email;
+  var password=req.body.password;
+    console.log (mail,password);
 
-exports.logout=function(req,res){
-  
+  const customFields = {
+    usernameField: 'mail'
+ };
+
+//const verifyCallback = (username, password, done) => {
+   console.log('Before findOne');   
+   User.findOne({ mail: mail })
+        .then((user) => {
+
+            if (!user) { return done(null, false) }
+            
+            const isValid = validPassword(password, user.hash, user.salt);
+            
+            consolelog('Password:', password);            
+            console.log('Le hash: ', user.hash);
+            console.log('Salt: ', user.salt);
+            if (isValid) {
+                return done(null, user);
+            } else {
+                return done(null, false);
+            }
+        })
+        .catch((err) => {   
+            done(err);
+        });
+
+//}
+
+const strategy  = new LocalStrategy(customFields, verifyCallback);
+
+passport.use(strategy);
+
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser((userId, done) => {
+    User.findById(userId)
+        .then((user) => {
+            done(null, user);
+        })
+        .catch(err => done(err))
+});
+console.log('Apres deserializeUser');
+  passport.authenticate('local', 
+    { failureRedirect: '../index', 
+    successRedirect: '../General' });
+
 }
 
+
+exports.login = function(req, res) {
+  User.authentification();
+}
+
+
+exports.logout = function(req, res) {
+   req.logout();
+   res.redirect("../index");
+}
+
+
+
+exports.getSuccess = function(req,res) {
+  res.send('<p>You successfully logged in. --> <a href="./index">Home page</a></p>');
+}
+
+exports.getFailure = function(req, res) {
+   res.send('You entered the wrong password.');
+   res.send('Not connected!');
+};

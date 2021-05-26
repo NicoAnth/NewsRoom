@@ -12,10 +12,18 @@
 
     function getNews() {
     
-        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=pageCategory%>&apikey=06e5537922b040989a7056bdf11539d9').then((res)=>{
+        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=pageCategory%>&apikey=06e5537922b040989a7056bdf11539d9&pageSize=100').then((res)=>{
             return res.json()
         }).then((data)=>{
             console.log(data)
+            let technology = ["Macworld","Polygon","AnandTech","PRNewswire","DC Rainmaker", 
+                                    "MacRumors", "XDA Developers","VentureBeat", "PCMag.com", 
+                                    "Motley Fool","IGN","Itnewsafrica.com","TimesLIVE","The Next Web",  
+                                    "GSMArena.com","Nintendo Life","Eurogamer.net","India TV News", 
+                                    "Tom's Guide","HYPEBEAST","Designboom","Notebookcheck.net", 
+                                    "TrueAchievements","Anitrendz.net","Digital Information World", 
+                                    "9to5Mac","Pocket-lint"];
+            data.articles = data.articles.filter((news) => technology.includes(news.source.name));
             data.articles.forEach(article =>{
                 
                 //Create article elements

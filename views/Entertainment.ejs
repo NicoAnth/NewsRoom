@@ -12,10 +12,18 @@
 
     function getNews() {
     
-        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=pageCategory%>&apikey=06e5537922b040989a7056bdf11539d9').then((res)=>{
+        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=pageCategory%>&apikey=06e5537922b040989a7056bdf11539d9&pageSize=100').then((res)=>{
             return res.json()
         }).then((data)=>{
             console.log(data)
+                 let entertainment = ['Global Times','KTVZ','Cosmopolitan.com','soompi','GamesRadar+','CinemaBlend',
+                                     'Forbes', 'HarpersBAZAAR.com','Teen Vogue', 'Bustle', 'ABC News', 'TMZ', 
+                                    'woman&home','Royal Central', 'digitalspy.com','Post Magazine', 'NME', 
+                                    'The News International','Www.geo.tv', 'Republic World', 'WION', 
+                                    'IndiaGlitz.com','The Irish Sun', 'HITC - Football, Gaming, Movies, TV, Music', 
+                                    'PerthNow','AsiaOne', 'eNCA'];
+                 data.articles = data.articles.filter((news) => entertainment.includes(news.source.name));
+
             data.articles.forEach(article =>{
                 
                 //Create article elements

@@ -12,10 +12,17 @@
 
     function getNews() {
     
-        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=nameCategoryAPI%>&apikey=06e5537922b040989a7056bdf11539d9').then((res)=>{
+        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=nameCategoryAPI%>&apikey=06e5537922b040989a7056bdf11539d9&pageSize=100').then((res)=>{
             return res.json()
         }).then((data)=>{
             console.log(data)
+                let sport = ['The42','Dublin Live','Football365.com','PlanetFootball','Evening Standard','Football Insider',  
+                             'Football.London','Birmingham Live','Leicestershire Live','Shields Gazette','Tribal Football',
+                             'GIVEMESPORT','PlanetF1','Stuff.co.nz','ESPN','Rivals.com','ClutchPoints','Fox News','hoopsrumors.com', 
+                            'Auburn Citizen','New York Post','MMA Fighting','CBS Sports','SFGate','The Times of India', 
+                             'NDTV News','India Today','Sportskeeda','CNA','Abs-cbn.com','Nrl.com','Speedcafe','Courier Mail', 
+                             'Racenet', 'Sen.com.au',  'portsnet.ca', 'Edmonton Journal', 'The Hard Tackle', 'CaughtOffside' ];
+            data.articles = data.articles.filter((news) => sport.includes(news.source.name));
             data.articles.forEach(article =>{
                 
                 //Create article elements

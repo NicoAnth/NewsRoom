@@ -15,6 +15,8 @@ var articleSchema=new mongoose.Schema({
     "forceMaxDataTimeWindow": Number
 });
 
+
+
 articleSchema.statics.createOne=function(art){
     //TODO
 }
@@ -33,6 +35,7 @@ articleSchema.statics.deleteOne=function(art){
 articleSchema.statics.deleteMany=function(artList){
     //TODO
 }
+
 
 //creaion du model
 var article= mongoose.model("article",articleSchema);

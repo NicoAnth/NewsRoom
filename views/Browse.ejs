@@ -10,22 +10,54 @@
         return true;
     }
 
-    function getNews() {
-    
-        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=pageCategory%>&apikey=06e5537922b040989a7056bdf11539d9&pageSize=100').then((res)=>{
-            return res.json()
+    function getBrowse(value) {
+        console.log("Entered getBrowse!");
+        fetch('https://newsapi.org/v2/everything?q='+value+'&apiKey=06e5537922b040989a7056bdf11539d9&language=en&sortBy=popularity&pageSize=100').then((res)=>{
+            return res.json();
         }).then((data)=>{
-            console.log(data)
-            let health = ['Hindustan Times','Sify News','Medical Dialogues','Telegraph India',
-                             'The Tribune India','IOL','The Conversation Africa','Ctvnews.ca', 
+              if(data != undefined){
+                let sources = ['RTE','HuffPost','Yahoo Entertainment','Business Insider','The Verge',
+                            'CNN', 'New York Times','Fox Sports','The Guardian' ,
+                            'Daily Telegraph', 'Reuters' ,'BBC News' ,'Independent', 'The Sun Daily',
+                            'Sky Sports' ,'TechRadar'  ,'The Indian Express', 'DNA India' ,'Firstpost' ,
+                            'India.com' ,'The Sydney Morning Herald' ,'New Zealand Herald' ,
+                            'Inquirer.net' ,'The Manila Times', 'Rappler' ,'The Straits Times', 
+                            'TODAYonline' ,'The Star Online','Jakarta Post' ,'News24'
+               ,'The Tribune India','IOL','The Conversation Africa','Ctvnews.ca', 
                                 'Vancouver Sun','News.com.au','The Australian','NT News', 
                                 'Australian Financial Review','News-Medical.Net', 'Bristol Post',
                                 'SPORTbible','Daily Mail','Mashable','Irish Examiner','The Irish Times', 
                                 'CNBC','The Washington Post','EurekAlert','Science Daily','CNET', 
                             'Malaysiakini' ,'swissinfo.ch', 'Advanced Science News', 'SciTechDaily', 
-                            'BioSpace','Nature World News','Investing.com' ];
-                            data.articles = data.articles.filter((news) => health.includes(news.source.name));
-            data.articles.forEach(article =>{
+                            'BioSpace','Nature World News','Investing.com',
+                'The42','Dublin Live','Football365.com','PlanetFootball','Evening Standard','Football Insider',  
+                             'Football.London','Birmingham Live','Leicestershire Live','Shields Gazette','Tribal Football',
+                             'GIVEMESPORT','PlanetF1','Stuff.co.nz','ESPN','Rivals.com','ClutchPoints','Fox News','hoopsrumors.com', 
+                            'Auburn Citizen','New York Post','MMA Fighting','CBS Sports','SFGate','The Times of India', 
+                             'NDTV News','India Today','Sportskeeda','CNA','Abs-cbn.com','Nrl.com','Speedcafe','Courier Mail', 
+                             'Racenet', 'Sen.com.au',  'portsnet.ca', 'Edmonton Journal', 'The Hard Tackle', 'CaughtOffside',
+               'Global Times','KTVZ','Cosmopolitan.com','soompi','GamesRadar+','CinemaBlend',
+                                     'Forbes', 'HarpersBAZAAR.com','Teen Vogue', 'Bustle', 'ABC News', 'TMZ', 
+                                    'woman&home','Royal Central', 'digitalspy.com','Post Magazine', 'NME', 
+                                    'The News International','Www.geo.tv', 'Republic World', 'WION', 
+                                    'IndiaGlitz.com','The Irish Sun', 'HITC - Football, Gaming, Movies, TV, Music', 
+                                    'PerthNow','AsiaOne', 'eNCA',
+                'NASA', 'Engadget', 'The Hill','Executivetraveller.com','Cbslocal.com','ScienceDaily', 
+                                'Science Magazine','ExtremeTech','MyBroadband','Moneyweb.co.za', 'Business Day',  
+                                'Eastafricanewspost.com','The Hindu','BloombergQuint','Business Insider India', 
+                                'ScienceAlert','Herald Sun','Newshub','Stuff.co.za','1News','Thedailyguardian.net', 
+                                'Phys.Org','Live Science','IFLScience','Tech Explorist','Azoquantum.com', 
+                                'Telecompaper','Medical Xpress', 'HPCwire','Science Times',
+                  'Macworld','Polygon','AnandTech','PRNewswire','DC Rainmaker', 
+                                    'MacRumors', 'XDA Developers','VentureBeat', 'PCMag.com', 
+                                    'Motley Fool','IGN','Itnewsafrica.com','TimesLIVE','The Next Web',  
+                                    'GSMArena.com','Nintendo Life','Eurogamer.net','India TV News', 
+                                    "Tom's Guide",'HYPEBEAST','Designboom','Notebookcheck.net', 
+                                    'TrueAchievements','Anitrendz.net','Digital Information World', 
+                                    '9to5Mac','Pocket-lint'];
+                 data.articles = data.articles.filter((news) => sources.includes(news.source.name));
+                 data.articles.forEach(article =>{
+              
                 
                 //Create article elements
                 let div = document.createElement('div');
@@ -114,19 +146,24 @@
                 div.appendChild(br);
                 div.appendChild(hr);
                 document.getElementById("newsList").appendChild(div);
-            })
-        })
+                });
+
+              }
+             });
+           
     }
 </script>
-    
-   <%- include('HeaderCategory'); %>
 
-    <div class= "col-md-offset-4 col-md-4">
-        <h1><%=pageCategory%></h1>
+
+   <%- include('HeaderCategory'); %>
+   <div class= "col-md-offset-4 col-md-4">
+        <h1>Search by keyword: <%=JSON.stringify(keyword)%></h1>
         <hr>
     </div>
-    <div class="col-md-4 col-md-offset-4 col-mb-2 " id="newsList"></div>
-    
-    <script>getNews()</script>
 
+    <div class="col-md-4 col-md-offset-4 col-mb-2 " id="newsList"></div>
+     <script> 
+    getBrowse(<%-JSON.stringify(keyword)%>);
+    </script>
+   
 </body>

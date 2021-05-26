@@ -34,3 +34,4 @@ exports.deleteMany=function(req,res){
         console.log(results)
     });
 }
+

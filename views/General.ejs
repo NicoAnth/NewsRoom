@@ -11,11 +11,20 @@
     }
 
     function getNews() {
-    
-        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=pageCategory%>&apikey=06e5537922b040989a7056bdf11539d9').then((res)=>{
+        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=pageCategory%>&apikey=06e5537922b040989a7056bdf11539d9&pageSize=100').then((res)=>{
             return res.json()
         }).then((data)=>{
             console.log(data)
+            
+            let general = ['RTE','HuffPost','Yahoo Entertainment','Business Insider','The Verge',
+                            'CNN', 'New York Times','Fox Sports','The Guardian' ,
+                            'Daily Telegraph', 'Reuters' ,'BBC News' ,'Independent', 'The Sun Daily',
+                            'Sky Sports' ,'TechRadar'  ,'The Indian Express', 'DNA India' ,'Firstpost' ,
+                            'India.com' ,'The Sydney Morning Herald' ,'New Zealand Herald' ,
+                            'Inquirer.net' ,'The Manila Times', 'Rappler' ,'The Straits Times', 
+                            'TODAYonline' ,'The Star Online','Jakarta Post' ,'News24'];
+            data.articles = data.articles.filter((news) => general.includes(news.source.name));
+            
             data.articles.forEach(article =>{
                 
                 //Create article elements

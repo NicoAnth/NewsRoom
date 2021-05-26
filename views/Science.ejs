@@ -12,10 +12,17 @@
 
     function getNews() {
     
-        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=pageCategory%>&apikey=06e5537922b040989a7056bdf11539d9').then((res)=>{
+        fetch('https://newsapi.org/v2/top-headlines?language=en&category=<%=pageCategory%>&apikey=06e5537922b040989a7056bdf11539d9&pageSize=100').then((res)=>{
             return res.json()
         }).then((data)=>{
             console.log(data)
+            let science = ['NASA', 'Engadget', 'The Hill','Executivetraveller.com','Cbslocal.com','ScienceDaily', 
+                                'Science Magazine','ExtremeTech','MyBroadband','Moneyweb.co.za', 'Business Day',  
+                                'Eastafricanewspost.com','The Hindu','BloombergQuint','Business Insider India', 
+                                'ScienceAlert','Herald Sun','Newshub','Stuff.co.za','1News','Thedailyguardian.net', 
+                                'Phys.Org','Live Science','IFLScience','Tech Explorist','Azoquantum.com', 
+                                'Telecompaper','Medical Xpress', 'HPCwire','Science Times' ]
+             data.articles = data.articles.filter((news) => science.includes(news.source.name));
             data.articles.forEach(article =>{
                 
                 //Create article elements
